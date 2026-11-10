@@ -1,0 +1,140 @@
+/* ═══════════════════════════════════════════════════════════════
+   RSVP (diseño boda-jennifer-y-marcel repintado a Noche Estrellada)
+   + botón de música vinilo (#music-btn de boda-celeste-hernandez)
+   Clases nuevas .rv-* y .mb-* para no chocar con .rsvp-* / .vinyl-*
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ───────── RSVP ───────── */
+#rsvp.rv{text-align:center}
+.rv-dl{font-family:var(--font-jost),sans-serif;font-weight:500;font-size:16px;line-height:1.5;color:#1a2f6e;margin:18px auto 0;max-width:340px}
+.rv-dl strong{font-weight:600;color:#1E3A8A}
+
+.rv-para-lbl{display:block;margin-top:28px;font-family:var(--font-jost),sans-serif;font-weight:600;font-size:16px;letter-spacing:.18em;text-transform:uppercase;color:#7a5c14}
+.rv-para-nom{font-family:var(--font-cormorant),serif;font-weight:600;font-size:clamp(32px,8.6vw,40px);line-height:1.2;color:#7a5c14;margin:6px auto 0;max-width:440px;overflow-wrap:anywhere;
+  text-shadow:0 0 18px rgba(243,220,154,.85),0 0 2px rgba(243,220,154,.6),0 1px 0 rgba(255,255,255,.6)}
+.rv-note{font-family:var(--font-cormorant),serif;font-style:italic;font-weight:500;font-size:18px;color:#1a2f6e;margin:6px auto 0}
+
+.rv-boxes{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin:18px auto 4px}
+.rv-box{display:inline-flex;flex-direction:column;align-items:center;min-width:120px;padding:14px 26px;border:1px solid rgba(138,106,31,.45);border-radius:16px;background:#fbf4e6;
+  box-shadow:0 8px 24px rgba(30,58,138,.07),inset 0 0 0 4px rgba(247,231,206,.6)}
+.rv-box-lbl{font-family:var(--font-jost),sans-serif;font-weight:600;font-size:16px;letter-spacing:.2em;text-transform:uppercase;color:#7a5c14;padding-left:.2em}
+.rv-box-num{font-family:var(--font-jost),sans-serif;font-weight:500;font-size:48px;line-height:1.05;color:#1E3A8A;font-variant-numeric:tabular-nums}
+
+.rv-aviso{font-family:var(--font-jost),sans-serif;font-weight:500;font-size:16px;line-height:1.5;color:#8a2e1f;max-width:360px;margin:18px auto 0}
+
+.rv-bandeja{max-width:420px;margin:26px auto 0}
+.rv-q{font-family:var(--font-cormorant),serif;font-weight:600;font-size:20px;color:#1a2f6e;margin:0 0 12px}
+.rv-toggle{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.rv-toggle-btn{min-height:54px;padding:10px 8px;border-radius:14px;border:1.5px solid rgba(138,106,31,.55);background:#fbf4e6;font-family:var(--font-jost),sans-serif;font-weight:600;font-size:16px;line-height:1.25;color:#1a2f6e;cursor:pointer;transition:background .25s,border-color .25s,color .25s,box-shadow .25s}
+.rv-toggle-btn:hover:not(:disabled){border-color:#1E3A8A}
+.rv-toggle-btn.on{background:#1E3A8A;border-color:#1E3A8A;color:#F7E7CE;box-shadow:0 6px 18px rgba(30,58,138,.25),inset 0 0 0 1px rgba(212,175,55,.55)}
+.rv-toggle-btn:disabled{opacity:.5;cursor:not-allowed}
+.rv-toggle-btn:focus-visible,.rv-btn:focus-visible,.rv-editar:focus-visible,.rv-ctr button:focus-visible{outline:2px solid #1E3A8A;outline-offset:3px}
+
+.rv-fields{margin-top:18px;display:grid;gap:10px}
+.rv-help{font-family:var(--font-cormorant),serif;font-weight:500;font-size:18px;line-height:1.5;color:#1a2f6e;margin:0 auto 4px;max-width:340px}
+.rv-ctr{display:flex;align-items:center;justify-content:center;gap:18px;margin:0 auto 8px}
+.rv-ctr button{width:48px;height:48px;border-radius:50%;border:1.5px solid #8a6a1f;background:#fff;color:#1E3A8A;font-family:var(--font-jost),sans-serif;font-weight:500;font-size:24px;line-height:1;cursor:pointer;transition:background .2s}
+.rv-ctr button:hover:not(:disabled){background:#F7E7CE}
+.rv-ctr button:disabled{opacity:.35;cursor:not-allowed}
+.rv-ctr-num{font-family:var(--font-jost),sans-serif;font-weight:500;font-size:32px;color:#1E3A8A;min-width:44px;font-variant-numeric:tabular-nums}
+.rv-input{width:100%;min-height:52px;padding:12px 16px;border-radius:12px;border:1.5px solid rgba(30,58,138,.38);background:#fff;font-family:var(--font-jost),sans-serif;font-weight:500;font-size:16px;color:#1a2f6e;outline:none;-webkit-appearance:none;appearance:none}
+.rv-input::placeholder{color:#5f6b8a;opacity:1}
+.rv-input:focus{border-color:#1E3A8A;box-shadow:0 0 0 3px rgba(74,123,183,.22)}
+.rv-input.falta{border-color:#8a2e1f;background:#fff6f3}
+
+.rv-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;margin-top:20px;min-height:56px;padding:12px 20px;border-radius:999px;border:1px solid #8a6a1f;
+  background:linear-gradient(180deg,#24479e 0%,#1E3A8A 55%,#17306f 100%);color:#F7E7CE;font-family:var(--font-jost),sans-serif;font-weight:600;font-size:16px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;
+  box-shadow:0 8px 22px rgba(30,58,138,.25),inset 0 0 0 1px rgba(212,175,55,.45)}
+.rv-btn svg{width:18px;height:18px;flex:0 0 auto;color:#f3dc9a}
+.rv-btn:disabled{opacity:.55;cursor:not-allowed;animation:none}
+.rv-btn.respira{animation:rvRespira 3.2s ease-in-out infinite}
+@keyframes rvRespira{0%,100%{transform:scale(1);box-shadow:0 8px 22px rgba(30,58,138,.25),inset 0 0 0 1px rgba(212,175,55,.45)}50%{transform:scale(1.025);box-shadow:0 12px 30px rgba(212,175,55,.38),inset 0 0 0 1px rgba(212,175,55,.7)}}
+
+.rv-feedback{font-family:var(--font-jost),sans-serif;font-weight:500;font-size:16px;line-height:1.5;color:#8a2e1f;max-width:380px;margin:16px auto 0}
+
+.rv-gracias{max-width:400px;margin:26px auto 0;padding:28px 22px;background:#fbf4e6;border:1.5px solid rgba(212,175,55,.7);border-radius:16px;box-shadow:0 10px 28px rgba(30,58,138,.08)}
+.rv-gracias-icon{color:#1E3A8A;margin:0 auto 10px;display:block}
+.rv-gracias-title{font-family:var(--font-cormorant),serif;font-weight:700;font-size:26px;line-height:1.3;color:#1E3A8A;margin-bottom:8px}
+.rv-gracias-sub{font-family:var(--font-cormorant),serif;font-style:italic;font-weight:500;font-size:18px;line-height:1.6;color:#1a2f6e;margin-bottom:18px}
+.rv-editar{min-height:48px;padding:10px 22px;border:1.5px solid #8a6a1f;background:transparent;border-radius:999px;font-family:var(--font-jost),sans-serif;font-weight:600;font-size:16px;color:#1E3A8A;cursor:pointer}
+.rv-editar:disabled{opacity:.45;cursor:not-allowed}
+
+/* ───────── Botón de música · vinilo ───────── */
+#music-btn.mb-btn{
+  position:fixed;left:16px;right:auto;bottom:max(16px,env(safe-area-inset-bottom));z-index:998;
+  width:64px;height:64px;border-radius:50%;padding:0;border:none;cursor:pointer;background:transparent;
+  opacity:0;transform:scale(.6);pointer-events:none;
+  transition:opacity .6s ease,transform .4s cubic-bezier(.2,.7,.2,1);
+  box-shadow:0 8px 22px rgba(11,24,64,.45),0 0 0 2px rgba(212,175,55,.55),0 0 0 5px rgba(212,175,55,.12);
+  -webkit-tap-highlight-color:transparent;
+}
+#music-btn.mb-btn.mb-visible{opacity:1;transform:scale(1);pointer-events:auto}
+#music-btn.mb-btn.mb-visible:hover{transform:scale(1.08)}
+#music-btn.mb-btn:focus-visible{outline:2px solid #1E3A8A;outline-offset:4px}
+#music-btn .mb-spin{display:block;width:100%;height:100%;border-radius:50%;position:relative}
+#music-btn.is-playing .mb-spin{animation:mbSpin 1.8s linear infinite}
+@keyframes mbSpin{to{transform:rotate(360deg)}}
+#music-btn .mb-disc{display:block;width:100%;height:100%;border-radius:50%;overflow:hidden;position:relative;
+  background:
+    radial-gradient(circle,#111 4%,transparent 4.5%),
+    repeating-radial-gradient(circle,
+      transparent 20%,rgba(255,255,255,.055) 20.8%,transparent 21.5%,
+      transparent 24%,rgba(255,255,255,.04) 24.8%,transparent 25.5%,
+      transparent 28%,rgba(255,255,255,.055) 28.8%,transparent 29.5%,
+      transparent 32%,rgba(255,255,255,.04) 32.8%,transparent 33.5%,
+      transparent 36%,rgba(255,255,255,.055) 36.8%,transparent 37.5%,
+      transparent 40%,rgba(255,255,255,.04) 40.8%,transparent 41.5%,
+      transparent 44%,rgba(255,255,255,.055) 44.8%,transparent 45.5%,
+      transparent 48%,rgba(255,255,255,.04) 48.8%,transparent 49.5%,
+      transparent 52%,rgba(255,255,255,.055) 52.8%,transparent 53.5%,
+      transparent 56%,rgba(255,255,255,.04) 56.8%,transparent 57.5%,
+      transparent 60%,rgba(255,255,255,.055) 60.8%,transparent 61.5%,
+      transparent 64%,rgba(255,255,255,.04) 64.8%,transparent 65.5%,
+      transparent 68%,rgba(255,255,255,.055) 68.8%,transparent 69.5%,
+      transparent 72%,rgba(255,255,255,.04) 72.8%,transparent 73.5%,
+      transparent 76%,rgba(255,255,255,.055) 76.8%,transparent 77.5%,
+      transparent 80%,rgba(255,255,255,.04) 80.8%,transparent 81.5%,
+      transparent 84%,rgba(255,255,255,.055) 84.8%,transparent 85.5%,
+      transparent 88%,rgba(255,255,255,.04) 88.8%,transparent 89.5%,
+      transparent 92%,rgba(255,255,255,.055) 92.8%,transparent 93.5%,
+      transparent 96%,rgba(255,255,255,.04) 96.8%,transparent 97.5%
+    ),
+    radial-gradient(circle,#141414 0%,#1c1c1c 60%,#111 100%);
+  box-shadow:inset 0 0 8px rgba(0,0,0,.4)}
+/* etiqueta central metálica dorada */
+#music-btn .mb-disc::after{content:"";position:absolute;left:50%;top:50%;width:40%;height:40%;transform:translate(-50%,-50%);border-radius:50%;z-index:1;
+  background:radial-gradient(circle at 34% 28%,#fff3c4 0%,#f3dc9a 30%,#D4AF37 62%,#8a6a1f 100%);
+  box-shadow:0 0 0 1.5px rgba(40,30,4,.5),inset 0 0 6px rgba(255,255,255,.35)}
+#music-btn .mb-sheen{position:absolute;inset:0;border-radius:50%;z-index:2;pointer-events:none;
+  background:linear-gradient(135deg,transparent 30%,rgba(255,255,255,.09) 42%,rgba(255,255,255,.15) 48%,rgba(255,255,255,.09) 54%,transparent 66%)}
+#music-btn .mb-label-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:3;display:block;width:30px;pointer-events:none;
+  font-family:var(--font-cormorant),serif;font-style:italic;font-weight:700;font-size:11px;line-height:1;color:#1E3A8A;text-align:center;white-space:nowrap}
+#music-btn .mb-label-text small{display:block;margin-top:1px;font-family:var(--font-cormorant),serif;font-style:normal;font-weight:700;font-size:6px;letter-spacing:.14em;padding-left:.14em;opacity:.85}
+/* insignia play/pausa */
+#music-btn .mb-icons{position:absolute;bottom:-3px;right:-3px;z-index:4;display:block;width:20px;height:20px;padding:4px;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle at 35% 30%,#f3dc9a 0%,#D4AF37 55%,#8a6a1f 100%);box-shadow:0 2px 6px rgba(0,0,0,.4)}
+#music-btn .mb-icons svg{width:100%;height:100%;display:block;fill:#1E3A8A}
+#music-btn .mb-icon-pause{display:none}
+#music-btn.is-playing .mb-icon-play{display:none}
+#music-btn.is-playing .mb-icon-pause{display:block}
+/* pulso */
+#music-btn.mb-btn::after{content:"";position:absolute;inset:-5px;border-radius:50%;border:1px solid #D4AF37;opacity:0;pointer-events:none}
+#music-btn.mb-btn.is-playing::after{animation:mbPulse 1.6s ease-in-out infinite}
+@keyframes mbPulse{0%,100%{transform:scale(1);opacity:.35}50%{transform:scale(1.12);opacity:.05}}
+/* brazo del tocadiscos */
+#music-btn .mb-tonearm{position:absolute;top:-7px;right:-8px;width:26px;height:37px;z-index:5;display:block;pointer-events:none;
+  transform-origin:top right;transform:rotate(-28deg);transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+#music-btn.is-playing .mb-tonearm{transform:rotate(-12deg)}
+#music-btn .mb-tonearm-line{position:absolute;top:2px;right:5px;width:2.5px;height:30px;border-radius:1px;transform:rotate(-5deg);transform-origin:top center;
+  background:linear-gradient(to bottom,#8a6a1f,#f3dc9a 40%,#8a6a1f)}
+#music-btn .mb-tonearm-head{position:absolute;bottom:0;right:2px;width:6px;height:7px;border-radius:0 0 2px 2px;background:#D4AF37;box-shadow:0 1px 2px rgba(0,0,0,.35)}
+#music-btn .mb-tonearm-pivot{position:absolute;top:0;right:2px;width:8px;height:8px;border-radius:50%;
+  background:radial-gradient(circle,#fff3c4,#8a6a1f);box-shadow:0 1px 3px rgba(0,0,0,.3)}
+
+@media (prefers-reduced-motion:reduce){
+  #music-btn.is-playing .mb-spin,#music-btn.mb-btn.is-playing::after,.rv-btn.respira{animation:none!important}
+  #music-btn .mb-tonearm,#music-btn.is-playing .mb-tonearm{transition:none;transform:rotate(-20deg)}
+  #music-btn.mb-btn{transition:opacity .3s ease;transform:none}
+  #music-btn.mb-btn.mb-visible,#music-btn.mb-btn.mb-visible:hover{transform:none}
+}

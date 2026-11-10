@@ -1,0 +1,131 @@
+/* ══════════ Paquete de efectos (portada, fundidos, levitación, títulos, menú) ══════════ */
+
+/* ---------- 1. Portada ---------- */
+.hero-night{position:relative;isolation:isolate;overflow:hidden;min-height:100svh;display:flex;align-items:flex-end;justify-content:center;
+  padding:80px 16px 110px!important;background:#0b1840;color:var(--champ);
+  --bg:#0b1840;--navy:#f3dc9a;--text:var(--champ);--accent:var(--champ);--dark:var(--champ)}
+.hero-bg{position:absolute;inset:-14% 0;z-index:-5;transform:translate3d(0,calc(var(--hp,0) * -70px),0)}
+.hero-drift{position:absolute;inset:0;background:var(--noche-hero) center/cover no-repeat;
+  animation:heroDrift 20s ease-in-out infinite alternate;transform-origin:55% 45%}
+@keyframes heroDrift{0%{transform:translate3d(-2%,1.5%,0) scale(1.04)}100%{transform:translate3d(2%,-1.5%,0) scale(1.16)}}
+/* destellos cálidos desenfocados */
+.hero-glints{position:absolute;inset:0;z-index:-4;mix-blend-mode:screen;pointer-events:none}
+.hero-glints span{position:absolute;border-radius:50%;opacity:.25;background:radial-gradient(circle,rgba(247,231,206,.35) 0%,rgba(243,220,154,.18) 35%,rgba(243,220,154,0) 70%)}
+.hero-glints .g1{width:70%;aspect-ratio:1;left:-12%;top:6%;animation:gl1 28s ease-in-out infinite alternate,breathe 9s ease-in-out infinite}
+.hero-glints .g2{width:55%;aspect-ratio:1;right:-10%;top:18%;animation:gl2 24s ease-in-out infinite alternate,breathe 11s ease-in-out -3s infinite}
+.hero-glints .g3{width:48%;aspect-ratio:1;left:24%;top:38%;animation:gl3 32s ease-in-out infinite alternate,breathe 8s ease-in-out -5s infinite}
+.hero-glints .g4{width:40%;aspect-ratio:1;right:6%;top:-4%;animation:gl4 26s ease-in-out infinite alternate,breathe 10s ease-in-out -7s infinite}
+@keyframes gl1{to{transform:translate3d(18%,10%,0)}}
+@keyframes gl2{to{transform:translate3d(-20%,14%,0)}}
+@keyframes gl3{to{transform:translate3d(12%,-16%,0)}}
+@keyframes gl4{to{transform:translate3d(-14%,18%,0)}}
+@keyframes breathe{0%,100%{opacity:.25}50%{opacity:.55}}
+/* barrido de lente: ancho, difuso, cada 12 s con pausa larga */
+.hero-lens{position:absolute;inset:0;z-index:-3;overflow:hidden;pointer-events:none;mix-blend-mode:soft-light}
+.hero-lens span{position:absolute;top:-10%;bottom:-10%;left:0;width:38%;opacity:0;
+  background:linear-gradient(100deg,rgba(255,251,234,0) 0%,rgba(255,251,234,.9) 50%,rgba(255,251,234,0) 100%);
+  animation:lens 12s ease-in-out 2s infinite}
+@keyframes lens{0%{transform:translate3d(-120%,0,0) skewX(-12deg);opacity:0}6%{opacity:.18}30%{transform:translate3d(300%,0,0) skewX(-12deg);opacity:.18}34%,100%{transform:translate3d(300%,0,0) skewX(-12deg);opacity:0}}
+/* polvo de luz */
+.hero-dust{position:absolute;inset:0;z-index:-3;pointer-events:none}
+.hero-dust i{position:absolute;border-radius:50%;background:#f3dc9a;box-shadow:0 0 6px rgba(243,220,154,.8);opacity:var(--o,.5);
+  animation-name:dustUp,dustTw;animation-timing-function:linear,ease-in-out;animation-iteration-count:infinite,infinite}
+@keyframes dustUp{0%{transform:translate3d(0,0,0)}100%{transform:translate3d(10px,-160px,0)}}
+@keyframes dustTw{0%,100%{opacity:calc(var(--o,.5) * .4)}50%{opacity:var(--o,.5)}}
+.hero-vignette{position:absolute;inset:0;z-index:-2;pointer-events:none;background:radial-gradient(ellipse 85% 70% at 50% 45%,rgba(11,24,64,0) 55%,rgba(11,24,64,.55) 100%)}
+.hero-veil{position:absolute;left:0;right:0;bottom:0;height:72%;z-index:-2;pointer-events:none;
+  background:linear-gradient(180deg,rgba(11,24,64,0) 0%,rgba(11,24,64,.55) 35%,rgba(11,24,64,.82) 70%,rgba(13,27,69,.95) 100%)}
+.hero-txt{width:100%;transform:translate3d(0,calc(var(--hp,0) * -110px),0);opacity:calc(1 - var(--hp,0) * 1.4);filter:blur(calc(var(--hp,0) * 10px))}
+.hero-night .hf{background:transparent}
+.hero-night .hf-ln{background:#D4AF37;opacity:.75}
+.hero-night .hf-dots{border-color:rgba(247,231,206,.35)}
+.hero-night .hero-sur{color:var(--champ);text-shadow:0 1px 12px rgba(0,0,0,.6)}
+.hero-night .sub{color:var(--champ)!important;text-shadow:0 1px 12px rgba(0,0,0,.7)!important;font-size:18px}
+.hero-night .eyebrow{color:#f3dc9a!important;text-shadow:0 1px 10px rgba(0,0,0,.6)!important}
+.hero-night .hf-glow{display:none}
+.hero-city{display:block;margin-top:6px;font-family:var(--font-cormorant,serif);font-weight:600;font-size:15px;letter-spacing:.3em;text-transform:uppercase;color:#f3dc9a}
+.hero-night .hero-name{filter:drop-shadow(0 2px 12px rgba(0,0,0,.55))!important}
+
+/* ---------- 2. Fundidos uniformes entre secciones (los pinta FadeSections.tsx) ---------- */
+.fxf{position:relative;isolation:isolate}
+.fxf::before,.fxf::after{content:'';position:absolute;left:0;right:0;pointer-events:none;z-index:-1}
+.fxf::before{top:0;height:var(--fth,0px);background:var(--ft,none)}
+.fxf::after{bottom:0;height:var(--fbh,0px);background:var(--fb,none)}
+#footer.fxf::before,#footer.fxf::after{opacity:1}
+
+/* ---------- 4. Levitación ---------- */
+@keyframes levitate{0%,100%{transform:translate3d(0,0,0) rotate(0)}30%{transform:translate3d(0,-9px,0) rotate(.6deg)}70%{transform:translate3d(0,-5px,0) rotate(-.6deg)}}
+.fam-card{animation:levitate 6.5s ease-in-out -2.2s infinite}
+.levita{animation:levitate 6.5s ease-in-out -4.1s infinite}
+
+/* ---------- 10 + 11. Títulos metálicos con barrido lento ---------- */
+:root{
+  --foil:linear-gradient(100deg,#5a420c 0%,#7f6118 28%,#b8922a 50%,#7f6118 72%,#5a420c 100%);
+  --foil-dark:linear-gradient(100deg,#b8922a 0%,#D4AF37 28%,#FFFBEA 50%,#D4AF37 72%,#b8922a 100%);
+}
+.foil-text,.heading-sm,.heading,.foot-name,.env-title,.fi-letter{
+  background:var(--foil)!important;background-size:220% 100%!important;-webkit-background-clip:text!important;background-clip:text!important;
+  -webkit-text-fill-color:transparent!important;color:#7a5c14;animation:goldSweep 7s ease-in-out infinite!important;
+  padding:.22em .45em!important;margin-left:-.45em;margin-right:-.45em;margin-top:-.22em;margin-bottom:-.22em!important;line-height:1.25!important;
+  box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.heading-sm,.heading{display:inline-block}
+.noche .heading-sm,.noche .heading,.foil-text.dark,.foot-name,.hero-night .heading{background:var(--foil-dark)!important;background-size:220% 100%!important;-webkit-background-clip:text!important;background-clip:text!important}
+@keyframes goldSweep{0%,100%{background-position:0% 0}50%{background-position:100% 0}}
+#galeria .heading-sm{animation-delay:-1.2s!important}
+#familia .heading-sm{animation-delay:-2.4s!important}
+#ubicacion .heading-sm{animation-delay:-3.6s!important}
+#itinerario .heading-sm{animation-delay:-4.8s!important}
+#vestimenta .heading-sm{animation-delay:-6s!important}
+#regalos .heading-sm{animation-delay:-.6s!important}
+#album .heading-sm{animation-delay:-1.8s!important}
+#rsvp .heading-sm{animation-delay:-3s!important}
+.rv.visible .heading-sm{clip-path:inset(-30% -30% -30% -30%)}
+
+/* ---------- 12. Menú minimalista ---------- */
+.mn2-btns{position:fixed;top:max(14px,env(safe-area-inset-top));right:14px;z-index:996;display:flex;gap:10px;opacity:0;pointer-events:none;transition:opacity .9s ease}
+.mn2-btns.on{opacity:1;pointer-events:auto}
+.mn2-b{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;cursor:pointer;
+  background:rgba(251,244,230,.62);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid rgba(212,175,55,.75);box-shadow:0 6px 18px rgba(11,24,64,.18);padding:0}
+.mn2-b i{display:block;width:18px;height:1.5px;background:#1E3A8A;border-radius:2px}
+.mn2-b i:nth-child(2){width:12px}
+.mn2-panel{position:fixed;inset:0;z-index:1000;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#fbf4e6;
+  opacity:0;visibility:hidden;transition:opacity .5s ease,visibility 0s linear .5s}
+.mn2-panel.open{opacity:1;visibility:visible;transition:opacity .5s ease}
+.mn2-x{position:absolute;top:max(14px,env(safe-area-inset-top));right:14px;width:44px;height:44px;border-radius:50%;border:1px solid rgba(212,175,55,.75);background:transparent;
+  color:#1E3A8A;font-size:26px;font-weight:300;line-height:1;cursor:pointer;font-family:var(--font-jost,sans-serif)}
+.mn2-rule{width:120px;height:1px;background:linear-gradient(90deg,transparent,#D4AF37,transparent);margin:0 0 22px}
+.mn2-rule.b{margin:22px 0 0}
+.mn2-list{list-style:none;margin:0;padding:0;text-align:center}
+.mn2-list li{opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s ease}
+.mn2-panel.open .mn2-list li{opacity:1;transform:none}
+.mn2-list a{display:block;padding:7px 18px;min-height:44px;font-family:var(--font-cormorant,serif);font-weight:600;font-size:clamp(24px,7vw,30px);line-height:1.45;color:#1E3A8A;text-decoration:none}
+.mn2-list a.act{font-style:italic;color:#7a5c14}
+
+@media(prefers-reduced-motion:reduce){
+  .hero-drift,.hero-glints span,.hero-lens span,.hero-dust i{animation:none!important}
+  .hero-lens{display:none}
+  .hero-bg,.hero-txt{transform:none!important;opacity:1!important;filter:none!important}
+  .fam-card,.levita{animation:none!important}
+  .foil-text,.heading-sm,.heading,.foot-name,.env-title,.fi-letter{animation:none!important;background-position:50% 0!important}
+  .mn2-panel,.mn2-list li{transition:none!important}
+}
+
+/* ---------- 3. Tintas que fluyen ---------- */
+.rv.has-ink{position:relative;isolation:isolate;overflow:hidden}
+.ink-bg{position:absolute;inset:0;z-index:-2;pointer-events:none;overflow:hidden;
+  -webkit-mask-image:linear-gradient(transparent 0,#000 150px,#000 calc(100% - 150px),transparent);
+  mask-image:linear-gradient(transparent 0,#000 150px,#000 calc(100% - 150px),transparent)}
+.ink-bg.flip{transform:scaleX(-1)}
+.ink-bg i{position:absolute;inset:-10%;background:center/cover no-repeat;opacity:.9;animation-duration:22s;animation-timing-function:ease-in-out;animation-iteration-count:infinite;animation-direction:alternate}
+.ink-d1{animation-name:inkA}.ink-d2{animation-name:inkB}.ink-d3{animation-name:inkC}.ink-d4{animation-name:inkD}
+@keyframes inkA{0%{transform:translate3d(-4%,-2%,0) scale(1.02) rotate(-1.2deg)}100%{transform:translate3d(4%,3%,0) scale(1.16) rotate(1.2deg)}}
+@keyframes inkB{0%{transform:translate3d(3%,-4%,0) scale(1.16) rotate(1deg)}100%{transform:translate3d(-4%,2%,0) scale(1.02) rotate(-1.2deg)}}
+@keyframes inkC{0%{transform:translate3d(0,4%,0) scale(1.04) rotate(1.2deg)}100%{transform:translate3d(-3%,-4%,0) scale(1.15) rotate(-.8deg)}}
+@keyframes inkD{0%{transform:translate3d(-3%,3%,0) scale(1.12) rotate(-.6deg)}100%{transform:translate3d(4%,-3%,0) scale(1.03) rotate(1.2deg)}}
+.has-ink .sub,.has-ink .gift-msg,.has-ink p,.has-ink .eyebrow,.has-ink .italiana,.has-ink .loc-txt{text-shadow:0 0 10px rgba(253,249,241,.95),0 0 22px rgba(253,249,241,.85)}
+@media(prefers-reduced-motion:reduce){.ink-bg i{animation:none!important}}
+/* footer: liberar ::before/::after para los fundidos */
+#footer.fxf::before{inset:auto;left:0;right:0;top:0}
+#footer.fxf::after{inset:auto;left:0;right:0;bottom:0;top:auto}
+.ink-bg i{opacity:.6}
+.has-ink .heading-sm{filter:drop-shadow(0 0 5px rgba(253,249,241,.95)) drop-shadow(0 0 14px rgba(253,249,241,.9))}

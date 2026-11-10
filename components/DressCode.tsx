@@ -1,0 +1,120 @@
+// Código de vestimenta — diseño de boda-fabiola-y-fernando (dibujos lado a lado
+// con línea divisoria + bloque de colores), repintado a la paleta de Camila.
+// Estilos en app/fx-dress-sobres.css (prefijo fx-dc-).
+import type { CSSProperties } from "react";
+
+type Color = { hex: string; name: string };
+
+const SUGERIDOS: Color[] = [
+  { hex: "#999999", name: "Gris" },
+  { hex: "#11053b", name: "Azul noche" },
+  { hex: "#ffffff", name: "Blanco" },
+];
+
+// Colores a evitar del cliente = reservados para la quinceañera (viste azul cielo)
+const EVITAR: Color[] = [
+  { hex: "#93e3fd", name: "Azul cielo" },
+  { hex: "#011d57", name: "Azul marino" },
+  { hex: "#fecb3e", name: "Amarillo" },
+];
+
+function esClaro(hex: string) {
+  const n = parseInt(hex.slice(1), 16);
+  const r = (n >> 16) & 255, g = (n >> 8) & 255, b = n & 255;
+  return (0.299 * r + 0.587 * g + 0.114 * b) / 255 > 0.55;
+}
+
+function Bolitas({ colores, offset }: { colores: Color[]; offset: number }) {
+  return (
+    <ul className="fx-dc-swatches">
+      {colores.map((c, i) => {
+        const k = i + offset;
+        const style = {
+          "--c": c.hex,
+          "--lev": `${-(k * 1.35 + 0.6).toFixed(2)}s`,
+          "--glow": `${-(k * 0.75).toFixed(2)}s`,
+          "--sweep": `${(k * 0.8).toFixed(2)}s`,
+        } as CSSProperties;
+        return (
+          <li key={c.hex} className={`fx-dc-sw${esClaro(c.hex) ? " is-light" : ""}`} style={style}>
+            <span className="fx-dc-sw-float">
+              <span className="fx-dc-sw-glow" aria-hidden="true" />
+              <span className="fx-dc-sw-dot" role="img" aria-label={c.name} />
+            </span>
+            <span className="fx-dc-sw-name">{c.name}</span>
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
+
+export default function DressCode() {
+  return (
+    <section id="vestimenta" className="sec fx-dc" style={{ textAlign: "center" }}>
+      <span className="eyebrow">Etiqueta</span>
+      <h2 className="heading-sm">C&oacute;digo de Vestimenta</h2>
+
+      <div className="orn" style={{ maxWidth: 180, margin: "12px auto 0" }}>
+        <span className="orn-line" />
+        <span className="orn-diamond" />
+        <span className="orn-line" />
+      </div>
+
+      <p className="fx-dc-title">Formal</p>
+      <p className="fx-dc-note">
+        Formal y c&oacute;modos: puedes venir con tenis para bailar toda la noche.
+      </p>
+
+      <div className="fx-dc-figures">
+        <figure className="fx-dc-fig">
+          <img
+            className="fx-dc-img fx-dc-img-1"
+            src="/dresscode/caballero.png"
+            alt="Caballero con traje formal"
+            width={300}
+            height={610}
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption>
+            <span className="fx-dc-fig-label">Caballeros</span>
+            <span className="fx-dc-fig-sub">Traje formal</span>
+          </figcaption>
+        </figure>
+        <figure className="fx-dc-fig">
+          <img
+            className="fx-dc-img fx-dc-img-2"
+            src="/dresscode/dama.png"
+            alt="Dama con vestido formal"
+            width={248}
+            height={604}
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption>
+            <span className="fx-dc-fig-label">Damas</span>
+            <span className="fx-dc-fig-sub">Vestido formal</span>
+          </figcaption>
+        </figure>
+      </div>
+
+      <div className="fx-dc-block">
+        <p className="fx-dc-group">Colores sugeridos</p>
+        <p className="fx-dc-group-sub">Tonos que lucen hermosos en esta noche estrellada</p>
+        <Bolitas colores={SUGERIDOS} offset={0} />
+      </div>
+
+      <div className="fx-dc-block">
+        <p className="fx-dc-group">Colores a evitar</p>
+        <p className="fx-dc-group-sub">Reservados para la quincea&ntilde;era</p>
+        <Bolitas colores={EVITAR} offset={SUGERIDOS.length} />
+        <p className="fx-dc-avoid-note">
+          Estos tonos est&aacute;n reservados para la quincea&ntilde;era.
+          <br />
+          &iexcl;Gracias por tu comprensi&oacute;n!
+        </p>
+      </div>
+    </section>
+  );
+}

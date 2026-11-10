@@ -1,0 +1,228 @@
+/* =====================================================================
+   FX · Código de vestimenta (diseño boda-fabiola-y-fernando) y
+   Lluvia de sobres (diseño boda-jeffersson-y-vanessa), paleta Camila.
+   Todo con prefijo fx- para no chocar con globals.css / noche.css.
+   ===================================================================== */
+
+@keyframes fxLevitate{
+  0%,100%{transform:translateY(0) rotate(0deg)}
+  25%{transform:translateY(-4px) rotate(.6deg)}
+  50%{transform:translateY(-9px) rotate(0deg)}
+  75%{transform:translateY(-4px) rotate(-.6deg)}
+}
+@keyframes fxLevitateSoft{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-5px)}
+}
+
+/* ── DRESS CODE ─────────────────────────────────────────────── */
+.fx-dc-title{
+  font-family:var(--font-cormorant,serif);font-style:italic;font-weight:600;
+  font-size:30px;letter-spacing:.06em;color:#1E3A8A;line-height:1.2;margin:22px 0 6px;
+}
+.fx-dc-note{
+  font-family:var(--font-cormorant,serif);font-style:italic;font-weight:500;
+  font-size:18px;line-height:1.55;color:#1a2f6e;max-width:320px;margin:0 auto 34px;
+}
+
+.fx-dc-figures{
+  position:relative;display:grid;grid-template-columns:1fr 1fr;align-items:end;
+  gap:30px;max-width:380px;margin:6px auto 30px;
+}
+/* línea divisoria entre ambos dibujos */
+.fx-dc-figures::before{
+  content:'';position:absolute;left:50%;top:8%;bottom:8%;width:1px;transform:translateX(-50%);
+  background:linear-gradient(180deg,transparent,rgba(74,123,183,.45) 18%,rgba(212,175,55,.55) 50%,rgba(74,123,183,.45) 82%,transparent);
+  pointer-events:none;
+}
+.fx-dc-fig{margin:0;display:flex;flex-direction:column;align-items:center;gap:14px}
+.fx-dc-fig figcaption{display:flex;flex-direction:column;align-items:center;gap:6px}
+.fx-dc-img{
+  height:220px;width:auto;max-width:100%;display:block;object-fit:contain;
+  filter:drop-shadow(0 6px 14px rgba(30,58,138,.22));
+  transform-origin:50% 100%;will-change:transform;
+  animation:fxLevitate 6.5s ease-in-out infinite;
+}
+.fx-dc-img-1{animation-delay:-2.2s}
+.fx-dc-img-2{animation-delay:-4.1s}
+.fx-dc-fig-label{
+  font-family:var(--font-cormorant,serif);font-style:italic;font-weight:600;
+  font-size:19px;letter-spacing:1px;color:#1E3A8A;
+}
+.fx-dc-fig-sub{
+  font-family:var(--font-jost,sans-serif);font-weight:500;font-size:12px;
+  letter-spacing:3px;text-transform:uppercase;color:#1a2f6e;opacity:.8;
+}
+
+.fx-dc-block{margin-top:34px}
+.fx-dc-group{
+  font-family:var(--font-cormorant,serif);font-weight:700;font-size:15px;
+  letter-spacing:.24em;text-transform:uppercase;color:#7a5c14;margin:0 0 4px;
+}
+.fx-dc-group-sub{
+  font-family:var(--font-cormorant,serif);font-style:italic;font-weight:500;
+  font-size:17px;color:#1a2f6e;margin:0 auto 22px;max-width:320px;line-height:1.5;
+}
+
+.fx-dc-swatches{
+  list-style:none;margin:0 auto;padding:0;display:grid;
+  grid-template-columns:repeat(3,minmax(78px,96px));justify-content:center;gap:24px 18px;
+}
+.fx-dc-sw{display:flex;flex-direction:column;align-items:center;gap:14px}
+.fx-dc-sw-float{
+  position:relative;width:50px;height:50px;display:block;
+  animation:fxLevitateSoft 6.5s ease-in-out infinite;animation-delay:var(--lev,0s);
+  will-change:transform;
+}
+/* glow dorado pulsante (solo opacity/transform) */
+.fx-dc-sw-glow{
+  position:absolute;inset:-12px;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle,rgba(212,175,55,.55) 0%,rgba(243,220,154,.28) 42%,rgba(212,175,55,0) 70%);
+  opacity:.35;transform:scale(.86);
+  animation:fxSwGlow 3.2s ease-in-out infinite;animation-delay:var(--glow,0s);
+}
+@keyframes fxSwGlow{
+  0%,100%{opacity:.3;transform:scale(.86)}
+  50%{opacity:1;transform:scale(1.06)}
+}
+.fx-dc-sw-dot{
+  position:relative;display:block;width:100%;height:100%;border-radius:50%;overflow:hidden;
+  background:var(--c);
+  box-shadow:0 4px 14px rgba(11,24,64,.22),inset 0 -4px 8px rgba(0,0,0,.18),inset 0 3px 6px rgba(255,255,255,.4);
+  border:1px solid rgba(212,175,55,.55);
+}
+/* blanco y claros: borde fino metálico */
+.fx-dc-sw.is-light .fx-dc-sw-dot{
+  border:1.5px solid transparent;
+  background:linear-gradient(var(--c),var(--c)) padding-box,
+             linear-gradient(135deg,#8a6a1f 0%,#D4AF37 30%,#f3dc9a 50%,#D4AF37 70%,#8a6a1f 100%) border-box;
+  box-shadow:0 4px 14px rgba(11,24,64,.18),inset 0 -4px 8px rgba(26,47,110,.12),inset 0 3px 6px rgba(255,255,255,.6);
+}
+/* barrido de luz diagonal */
+.fx-dc-sw-dot::after{
+  content:'';position:absolute;top:-30%;bottom:-30%;left:0;width:45%;pointer-events:none;
+  background:linear-gradient(100deg,transparent 0%,rgba(255,255,255,.75) 50%,transparent 100%);
+  transform:translateX(-160%) skewX(-18deg);
+  animation:fxSwSweep 4.8s ease-in-out infinite;animation-delay:var(--sweep,0s);
+}
+@keyframes fxSwSweep{
+  0%{transform:translateX(-160%) skewX(-18deg)}
+  32%,100%{transform:translateX(330%) skewX(-18deg)}
+}
+.fx-dc-sw-name{
+  font-family:var(--font-jost,sans-serif);font-weight:500;font-size:14.5px;
+  letter-spacing:.04em;color:#1a2f6e;line-height:1.3;
+}
+.fx-dc-avoid-note{
+  font-family:var(--font-cormorant,serif);font-style:italic;font-weight:500;
+  font-size:17px;line-height:1.55;color:#1a2f6e;max-width:330px;margin:26px auto 0;
+}
+@media (max-width:360px){
+  .fx-dc-figures{gap:18px}
+  .fx-dc-img{height:190px}
+  .fx-dc-swatches{grid-template-columns:repeat(3,minmax(70px,84px));gap:20px 10px}
+}
+
+/* ── MESA DE REGALOS · tarjetas ─────────────────────────────── */
+.fx-gifts{overflow:hidden}
+.fx-gifts-inner{position:relative;z-index:1}
+.gift-card.fx-gift::after{display:none}
+.fx-gift{animation:fxLevitateSoft 6.5s ease-in-out infinite;will-change:transform}
+.fx-gift:nth-child(1){animation-delay:-1.3s}
+.fx-gift:nth-child(2){animation-delay:-4.4s}
+.fx-gift-sheen{
+  position:absolute;inset:0;pointer-events:none;z-index:2;
+  background:linear-gradient(115deg,transparent 35%,rgba(247,231,206,.95) 48%,rgba(255,255,255,.9) 50%,transparent 65%);
+  transform:translateX(-130%);
+}
+.fx-gift-cards.fx-in .fx-gift-sheen{animation:fxGiftSheen 1.6s ease-out .3s 1 both}
+.fx-gift-cards.fx-in .fx-gift:nth-child(2) .fx-gift-sheen{animation-delay:.75s}
+@keyframes fxGiftSheen{from{transform:translateX(-130%)}to{transform:translateX(130%)}}
+
+/* ── LLUVIA DE SOBRES ───────────────────────────────────────── */
+.fx-env-rain{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.fx-env-rain canvas{display:block;width:100%;height:100%}
+
+.fx-env-stage{position:relative;margin-top:46px;display:flex;flex-direction:column;align-items:center}
+.fx-env-eyebrow{
+  font-family:var(--font-cormorant,serif);font-weight:700;font-size:15px;
+  letter-spacing:.24em;text-transform:uppercase;color:#7a5c14;margin-bottom:4px;
+}
+.fx-env{
+  display:flex;flex-direction:column;align-items:center;cursor:pointer;
+  border:none;background:none;padding:0;margin:22px auto 0;color:inherit;font:inherit;
+  touch-action:manipulation;-webkit-tap-highlight-color:transparent;
+}
+/* la caída va en un hijo: el botón conserva su caja final y es tocable siempre */
+.fx-env-fall{
+  display:flex;flex-direction:column;align-items:center;
+  opacity:0;transform:translateY(-150px) rotate(-12deg) scale(.82);
+}
+.fx-env:focus-visible{outline:2px solid rgba(212,175,55,.7);outline-offset:6px;border-radius:12px}
+.fx-env.is-landing .fx-env-fall{animation:fxEnvLand 1.15s cubic-bezier(.34,1.56,.64,1) forwards}
+.fx-env.is-landed .fx-env-fall{opacity:1;transform:none}
+@keyframes fxEnvLand{
+  0%{opacity:0;transform:translateY(-150px) rotate(-12deg) scale(.82)}
+  35%{opacity:1}
+  100%{opacity:1;transform:translateY(0) rotate(0deg) scale(1)}
+}
+.fx-env-body{
+  position:relative;display:block;perspective:700px;
+  width:min(258px,74vw);aspect-ratio:260/200;
+  filter:drop-shadow(0 10px 26px rgba(30,58,138,.2));
+}
+.fx-env.is-landed:not(.open) .fx-env-body{animation:fxEnvBreathe 3.6s ease-in-out infinite}
+@keyframes fxEnvBreathe{0%,100%{transform:scale(1)}50%{transform:scale(1.025)}}
+.fx-env-svg{width:100%;height:100%;display:block}
+.fx-env-flap{
+  position:absolute;top:23%;left:6.9%;width:86.2%;height:43%;display:block;
+  transform-origin:top center;transform-style:preserve-3d;
+  backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  transition:transform .65s cubic-bezier(.4,0,.2,1);pointer-events:none;z-index:2;
+}
+.fx-env-flap svg{width:100%;height:100%;display:block}
+.fx-env.open .fx-env-flap{transform:rotateX(-175deg)}
+.fx-env-seal{
+  position:absolute;top:52%;left:50%;width:23%;aspect-ratio:1;z-index:3;pointer-events:none;
+  transform:translate(-50%,-50%);
+  filter:drop-shadow(0 2px 4px rgba(11,24,64,.35));
+  transition:opacity .35s ease,transform .5s cubic-bezier(.4,0,.2,1);
+}
+.fx-env.open .fx-env-seal{opacity:0;transform:translate(-50%,-50%) scale(.7)}
+
+.fx-env-open{
+  overflow:hidden;max-height:0;opacity:0;display:flex;flex-direction:column;align-items:center;
+  gap:8px;padding:0 16px;text-align:center;pointer-events:none;
+  transition:max-height .55s .3s ease,opacity .4s .38s ease,margin-top .4s .3s ease;
+}
+.fx-env.open .fx-env-open{max-height:320px;opacity:1;pointer-events:auto;margin-top:20px}
+.fx-env-mailbox{width:42px;height:42px;color:#7a5c14;margin-top:6px}
+.fx-env-title{
+  display:block;font-family:var(--font-pinyon,cursive);font-size:clamp(30px,8.4vw,36px);
+  line-height:1.4;padding:.08em .1em;
+  background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:#7a5c14;
+}
+.fx-env-desc{
+  display:block;font-family:var(--font-cormorant,serif);font-style:italic;font-weight:500;
+  font-size:17px;line-height:1.75;color:#1a2f6e;max-width:300px;
+}
+.fx-env-hint{
+  position:relative;z-index:1;margin-top:18px;padding:10px 18px;min-height:44px;
+  border:none;background:none;cursor:pointer;touch-action:manipulation;
+  font-family:var(--font-italiana,serif);font-size:13px;letter-spacing:.3em;text-transform:uppercase;
+  color:#7a5c14;animation:fxEnvHint 2.4s ease-in-out infinite;
+}
+.fx-env-hint:focus-visible{outline:2px solid rgba(212,175,55,.7);outline-offset:2px;border-radius:24px}
+@keyframes fxEnvHint{0%,100%{opacity:.6}50%{opacity:1}}
+
+/* ── Movimiento reducido ───────────────────────────────────── */
+@media (prefers-reduced-motion:reduce){
+  .fx-dc-img,.fx-dc-sw-float,.fx-dc-sw-glow,.fx-dc-sw-dot::after,
+  .fx-gift,.fx-gift-sheen,.fx-env-body,.fx-env-hint{animation:none!important}
+  .fx-dc-sw-dot::after,.fx-gift-sheen{display:none}
+  .fx-dc-sw-glow{opacity:.45;transform:none}
+  .fx-env-fall{animation:none!important;opacity:1!important;transform:none!important}
+  .fx-env-hint{opacity:.9}
+  .fx-env-rain{display:none}
+}

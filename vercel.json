@@ -1,0 +1,5 @@
+{
+  "redirects": [
+    { "source": "/album", "destination": "https://panel-invitados.vercel.app/subir/xv-camila-esther-aguilar-juarez", "permanent": false }
+  ]
+}
