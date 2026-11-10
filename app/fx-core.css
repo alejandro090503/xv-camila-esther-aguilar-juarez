@@ -63,7 +63,7 @@
   --foil:linear-gradient(100deg,#5a420c 0%,#7f6118 28%,#b8922a 50%,#7f6118 72%,#5a420c 100%);
   --foil-dark:linear-gradient(100deg,#b8922a 0%,#D4AF37 28%,#FFFBEA 50%,#D4AF37 72%,#b8922a 100%);
 }
-.foil-text,.heading-sm,.heading,.foot-name,.env-title,.fi-letter{
+.foil-text,.heading-sm,.heading,.foot-name,.env-title,.fx-env-title,.fi-letter{
   background:var(--foil)!important;background-size:220% 100%!important;-webkit-background-clip:text!important;background-clip:text!important;
   -webkit-text-fill-color:transparent!important;color:#7a5c14;animation:goldSweep 7s ease-in-out infinite!important;
   padding:.22em .45em!important;margin-left:-.45em;margin-right:-.45em;margin-top:-.22em;margin-bottom:-.22em!important;line-height:1.25!important;
@@ -106,7 +106,7 @@
   .hero-lens{display:none}
   .hero-bg,.hero-txt{transform:none!important;opacity:1!important;filter:none!important}
   .fam-card,.levita{animation:none!important}
-  .foil-text,.heading-sm,.heading,.foot-name,.env-title,.fi-letter{animation:none!important;background-position:50% 0!important}
+  .foil-text,.heading-sm,.heading,.foot-name,.env-title,.fx-env-title,.fi-letter{animation:none!important;background-position:50% 0!important}
   .mn2-panel,.mn2-list li{transition:none!important}
 }
 
@@ -129,3 +129,6 @@
 #footer.fxf::after{inset:auto;left:0;right:0;bottom:0;top:auto}
 .ink-bg i{opacity:.6}
 .has-ink .heading-sm{filter:drop-shadow(0 0 5px rgba(253,249,241,.95)) drop-shadow(0 0 14px rgba(253,249,241,.9))}
+
+#regalos .fx-env-title{display:inline-block;animation-delay:-4.2s!important}
+#footer.noche-foot{padding-bottom:112px}
