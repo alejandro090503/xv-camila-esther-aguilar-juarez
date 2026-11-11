@@ -145,3 +145,23 @@
 @keyframes fdD{0%{transform:translate3d(-1.5%,1.5%,0) scale(1.08)}100%{transform:translate3d(2%,-1.5%,0) scale(1.02)}}
 #footer .foot-bg{background-position:center bottom}
 @media(prefers-reduced-motion:reduce){.fondo-bg i{animation:none!important}}
+
+/* ---------- Secciones claras uniformes: un solo crema, sin bandas ni separadores ---------- */
+.wrap{background:#fbf4e6!important}
+.sec-alt,.sec-paper,.sec-deep{background:transparent!important}
+/* los fondos pintados se extienden y se cruzan con los de la sección vecina */
+.rv.has-ink{overflow:visible}
+.fondo-bg,.ink-bg{top:-80px;bottom:-80px;
+  -webkit-mask-image:linear-gradient(transparent 0,#000 170px,#000 calc(100% - 170px),transparent);
+  mask-image:linear-gradient(transparent 0,#000 170px,#000 calc(100% - 170px),transparent)}
+.hero-night .hero-txt,.hero-night .scroll-cue{z-index:2}
+/* la noche: sin el velo oscuro en las orillas, el fundido lo pone FadeSections */
+.fxf::before,.fxf::after{z-index:1}
+.noche>*:not(.noche-bg){position:relative;z-index:2}
+#footer.noche-foot>*:not(.noche-bg){position:relative;z-index:2}
+
+/* ---------- Halo suave detrás de los textos sobre fondos pintados ---------- */
+.has-ink :is(p,.eyebrow,.italiana,.fam-name,.loc-venue,.loc-venue-lbl,.loc-txt,.itin2-time,.itin2-ev,.g3d-hint,
+  .fx-dc-title,.fx-dc-note,.fx-dc-group,.fx-dc-group-sub,.fx-dc-fig-label,.fx-dc-fig-sub,.fx-dc-sw-name,.fx-dc-avoid-note,
+  .rg-cta,.fx-env-eyebrow,.fx-env-hint,.album-aviso,.gift-msg,[class^="rv-"]){
+  text-shadow:0 0 6px rgba(251,244,230,.95),0 0 14px rgba(251,244,230,.9),0 0 26px rgba(251,244,230,.85),0 0 42px rgba(251,244,230,.7)}

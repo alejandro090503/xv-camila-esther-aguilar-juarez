@@ -56,10 +56,6 @@ export default function InvitacionClient() {
       >
         <Hero />
 
-        <ScrollReveal>
-          <Swirl />
-        </ScrollReveal>
-
         <ScrollReveal bg="sec-alt" ink={<FondoBg name="familia" dir={1} />}>
           <Familia />
         </ScrollReveal>
@@ -92,48 +88,24 @@ export default function InvitacionClient() {
           <Ubicacion />
         </ScrollReveal>
 
-        <ScrollReveal>
-          <Swirl />
-        </ScrollReveal>
-
         <ScrollReveal bg="sec-paper" ink={<FondoBg name="itinerario" dir={3} delay={-11} />}>
           <Itinerario />
-        </ScrollReveal>
-
-        <ScrollReveal>
-          <Ornament />
         </ScrollReveal>
 
         <ScrollReveal bg="sec-alt" ink={<FondoBg name="vestimenta" dir={4} delay={-3} />}>
           <DressCode />
         </ScrollReveal>
 
-        <ScrollReveal>
-          <Swirl />
-        </ScrollReveal>
-
         <ScrollReveal bg="sec-paper" ink={<FondoBg name="regalos" dir={1} delay={-15} />}>
           <MesaRegalos />
-        </ScrollReveal>
-
-        <ScrollReveal>
-          <Ornament />
         </ScrollReveal>
 
         <ScrollReveal bg="sec-alt" ink={<FondoBg name="album" dir={2} delay={-8} />}>
           <AlbumQR />
         </ScrollReveal>
 
-        <ScrollReveal>
-          <Ornament />
-        </ScrollReveal>
-
         <ScrollReveal bg="sec-deep">
           <SoloAdultos />
-        </ScrollReveal>
-
-        <ScrollReveal>
-          <Swirl />
         </ScrollReveal>
 
         <ScrollReveal bg="sec-paper" ink={<FondoBg name="rsvp" dir={3} delay={-18} />}>

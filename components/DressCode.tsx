@@ -1,7 +1,8 @@
 // Código de vestimenta — diseño de boda-fabiola-y-fernando (dibujos lado a lado
 // con línea divisoria + bloque de colores), repintado a la paleta de Camila.
 // Estilos en app/fx-dress-sobres.css (prefijo fx-dc-).
-import type { CSSProperties } from "react";
+"use client";
+import { useEffect, useState, type CSSProperties } from "react";
 
 type Color = { hex: string; name: string };
 
@@ -24,28 +25,43 @@ function esClaro(hex: string) {
   return (0.299 * r + 0.587 * g + 0.114 * b) / 255 > 0.55;
 }
 
+/** Una sola bolita por grupo: los colores se van alternando con un fundido suave. */
 function Bolitas({ colores, offset }: { colores: Color[]; offset: number }) {
+  const [i, setI] = useState(0);
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const id = window.setInterval(() => setI((v) => (v + 1) % colores.length), 2600);
+    return () => window.clearInterval(id);
+  }, [colores.length]);
+  const style = {
+    "--lev": `${-(offset * 1.35 + 0.6).toFixed(2)}s`,
+    "--glow": `${-(offset * 0.75).toFixed(2)}s`,
+    "--sweep": `${(offset * 0.8).toFixed(2)}s`,
+  } as CSSProperties;
   return (
-    <ul className="fx-dc-swatches">
-      {colores.map((c, i) => {
-        const k = i + offset;
-        const style = {
-          "--c": c.hex,
-          "--lev": `${-(k * 1.35 + 0.6).toFixed(2)}s`,
-          "--glow": `${-(k * 0.75).toFixed(2)}s`,
-          "--sweep": `${(k * 0.8).toFixed(2)}s`,
-        } as CSSProperties;
-        return (
-          <li key={c.hex} className={`fx-dc-sw${esClaro(c.hex) ? " is-light" : ""}`} style={style}>
-            <span className="fx-dc-sw-float">
-              <span className="fx-dc-sw-glow" aria-hidden="true" />
-              <span className="fx-dc-sw-dot" role="img" aria-label={c.name} />
-            </span>
-            <span className="fx-dc-sw-name">{c.name}</span>
-          </li>
-        );
-      })}
-    </ul>
+    <div className="fx-dc-one" style={style}>
+      <span className="fx-dc-sw-float fx-dc-one-float">
+        <span className="fx-dc-sw-glow" aria-hidden="true" />
+        {colores.map((c, k) => (
+          <span
+            key={c.hex}
+            className={`fx-dc-one-layer${esClaro(c.hex) ? " is-light" : ""}${k === i ? " on" : ""}`}
+            style={{ "--c": c.hex } as CSSProperties}
+            aria-hidden="true"
+          >
+            <span className="fx-dc-sw-dot" />
+          </span>
+        ))}
+      </span>
+      <span className="fx-dc-one-names" aria-live="off">
+        {colores.map((c, k) => (
+          <span key={c.hex} className={`fx-dc-sw-name fx-dc-one-name${k === i ? " on" : ""}`}>
+            {c.name}
+          </span>
+        ))}
+      </span>
+      <span className="sr-only">{colores.map((c) => c.name).join(", ")}</span>
+    </div>
   );
 }
 

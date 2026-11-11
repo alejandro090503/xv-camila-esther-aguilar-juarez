@@ -78,3 +78,24 @@
 @media (prefers-reduced-motion:reduce){
   .g3d-lb,.g3d-lb-img{animation:none}
 }
+
+/* ══════════ Espejo premium (pulido) ══════════
+   En lugar de un velo de color, el reflejo se desvanece con máscara: funciona
+   sobre cualquier fondo pintado. Brillo de cristal + filete dorado de "piso". */
+.g3d-refl{height:118px;margin-top:3px;border-radius:14px;overflow:hidden;
+  -webkit-mask-image:linear-gradient(to bottom,rgba(0,0,0,.62) 0%,rgba(0,0,0,.34) 22%,rgba(0,0,0,.14) 48%,rgba(0,0,0,.04) 70%,transparent 88%);
+          mask-image:linear-gradient(to bottom,rgba(0,0,0,.62) 0%,rgba(0,0,0,.34) 22%,rgba(0,0,0,.14) 48%,rgba(0,0,0,.04) 70%,transparent 88%)}
+.g3d-refl-in{opacity:1}
+.g3d-veil{background:linear-gradient(to bottom,rgba(251,244,230,.18) 0%,rgba(251,244,230,.42) 100%)}
+/* brillo diagonal del cristal */
+.g3d-refl::after{content:'';position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(115deg,rgba(255,251,234,0) 20%,rgba(255,251,234,.38) 42%,rgba(255,251,234,0) 60%)}
+/* filete dorado donde la foto toca el espejo */
+.g3d-refl::before{content:'';position:absolute;left:8%;right:8%;top:0;height:1px;z-index:2;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(212,175,55,.85),rgba(255,251,234,.95),rgba(212,175,55,.85),transparent)}
+/* piso: sombra elíptica suave bajo el carrusel */
+.g3d-scene::before{content:'';position:absolute;left:12%;right:12%;top:276px;height:46px;pointer-events:none;
+  background:radial-gradient(ellipse at center,rgba(30,58,138,.20) 0%,rgba(30,58,138,.08) 45%,rgba(30,58,138,0) 72%)}
+.g3d-scene::after{content:'';position:absolute;left:6%;right:6%;top:284px;height:1px;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(212,175,55,.35),transparent)}
+.g3d-scene{height:404px}

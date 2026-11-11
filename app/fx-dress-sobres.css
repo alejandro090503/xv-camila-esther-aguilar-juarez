@@ -226,3 +226,16 @@
   .fx-env-hint{opacity:.9}
   .fx-env-rain{display:none}
 }
+
+/* ---------- Una sola bolita que alterna colores con fundido ---------- */
+.fx-dc-one{display:flex;flex-direction:column;align-items:center;gap:14px;margin:6px auto 0}
+.fx-dc-one-float{width:76px;height:76px}
+.fx-dc-one-layer{position:absolute;inset:0;opacity:0;transition:opacity 1.1s ease-in-out}
+.fx-dc-one-layer.on{opacity:1}
+.fx-dc-one-layer.is-light .fx-dc-sw-dot{border:1.5px solid transparent;
+  background:linear-gradient(var(--c),var(--c)) padding-box,linear-gradient(135deg,#8a6a1f 0%,#D4AF37 30%,#f3dc9a 50%,#D4AF37 70%,#8a6a1f 100%) border-box}
+.fx-dc-one-names{position:relative;display:block;height:1.6em;min-width:140px}
+.fx-dc-one-name{position:absolute;left:0;right:0;top:0;text-align:center;opacity:0;transition:opacity 1.1s ease-in-out;font-size:16px}
+.fx-dc-one-name.on{opacity:1}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(prefers-reduced-motion:reduce){.fx-dc-one-layer,.fx-dc-one-name{transition:none}}
