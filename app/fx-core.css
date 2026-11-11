@@ -165,3 +165,4 @@
   .fx-dc-title,.fx-dc-note,.fx-dc-group,.fx-dc-group-sub,.fx-dc-fig-label,.fx-dc-fig-sub,.fx-dc-sw-name,.fx-dc-avoid-note,
   .rg-cta,.fx-env-eyebrow,.fx-env-hint,.album-aviso,.gift-msg,[class^="rv-"]){
   text-shadow:0 0 6px rgba(251,244,230,.95),0 0 14px rgba(251,244,230,.9),0 0 26px rgba(251,244,230,.85),0 0 42px rgba(251,244,230,.7)}
+.salmo-cita{display:block;margin-top:12px;font-family:var(--font-jost,sans-serif);font-weight:500;font-size:15px;letter-spacing:.14em;text-transform:uppercase;color:#7a5c14;text-shadow:0 0 8px rgba(251,244,230,.95),0 0 18px rgba(251,244,230,.85)}

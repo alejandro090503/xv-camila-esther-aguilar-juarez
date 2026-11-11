@@ -62,6 +62,7 @@ export default function CountdownTimer() {
       <span className="fecha-anio num">2027</span>
 
       <div style={{ height: 34 }} />
+      <p className="cd2-foot" style={{ marginTop: 0, marginBottom: 16 }}>Te espero a las 5:00 p.m.</p>
       <span className="eyebrow" style={{ marginBottom: 0 }}>Faltan</span>
 
       <div className="cd2" role="timer" aria-live="off">
@@ -71,7 +72,6 @@ export default function CountdownTimer() {
         <Unit v={t.s} l="Seg." glint={!g} />
       </div>
 
-      <p className="cd2-foot">Te espero a las 5:00 p.m.</p>
     </div>
   );
 }

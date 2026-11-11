@@ -37,8 +37,8 @@ export default function Ubicacion() {
         onTouchStart={() => setTocada(true)}
         onTouchEnd={() => setTimeout(() => setTocada(false), 600)}
       >
-        <span className="loc-venue-lbl">Misa de XV a&ntilde;os y Recepci&oacute;n</span>
-        <span className="loc-venue">Central de Abasto, Iztapalapa</span>
+        <span className="loc-venue-lbl">Ceremonia de 15 a&ntilde;os y Recepci&oacute;n</span>
+        <span className="loc-venue">Jard&iacute;n Hacienda Tezontle H2</span>
 
         <div className="loc-row">
           <ClockIcon />
@@ -49,7 +49,7 @@ export default function Ubicacion() {
         <div className="loc-row">
           <ClockIcon />
           <span className="loc-txt">
-            <strong>Misa &mdash; <span className="num">5:30</span> p.m.</strong>
+            <strong>Ceremonia &mdash; <span className="num">5:30</span> p.m.</strong>
           </span>
         </div>
 

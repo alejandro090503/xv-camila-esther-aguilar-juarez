@@ -11,7 +11,6 @@ import Ubicacion from "./Ubicacion";
 import DressCode from "./DressCode";
 import MesaRegalos from "./MesaRegalos";
 import AlbumQR from "./AlbumQR";
-import SoloAdultos from "./SoloAdultos";
 import RSVPSection from "./RSVPSection";
 import Footer from "./Footer";
 import MusicFab, { type MusicFabHandle } from "./MusicFab";
@@ -102,10 +101,6 @@ export default function InvitacionClient() {
 
         <ScrollReveal bg="sec-alt" ink={<FondoBg name="album" dir={2} delay={-8} />}>
           <AlbumQR />
-        </ScrollReveal>
-
-        <ScrollReveal bg="sec-deep">
-          <SoloAdultos />
         </ScrollReveal>
 
         <ScrollReveal bg="sec-paper" ink={<FondoBg name="rsvp" dir={3} delay={-18} />}>

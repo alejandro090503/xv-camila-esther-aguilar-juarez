@@ -14,7 +14,7 @@ const Iglesia = () => (
 
 const ITEMS = [
   { time: "5:00", event: "Recepción", Icon: Copa },
-  { time: "5:30", event: "Misa de XV años", Icon: Iglesia },
+  { time: "5:30", event: "Ceremonia de 15 años", Icon: Iglesia },
 ];
 
 export default function Itinerario() {

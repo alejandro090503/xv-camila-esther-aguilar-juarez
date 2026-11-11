@@ -29,6 +29,18 @@ export default function Familia() {
           a Dios por darme la existencia y la raz&oacute;n de vivir este momento.
         </p>
       </div>
+
+      <div className="fx-stagger salmo" style={{ marginTop: 34 }}>
+        <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style={{ display: "block", margin: "0 auto 12px" }}>
+          <path d="M12 1 L13.6 10.4 L23 12 L13.6 13.6 L12 23 L10.4 13.6 L1 12 L10.4 10.4 Z" fill="#D4AF37" />
+        </svg>
+        <p className="sub" style={{ margin: "0 auto", maxWidth: 330, fontSize: 19 }}>
+          &ldquo;Porque t&uacute; formaste mis entra&ntilde;as; T&uacute; me hiciste en el vientre de mi madre.
+          Te alabar&eacute;; porque formidables, maravillosas son tus obras; Estoy maravillado,
+          Y mi alma lo sabe muy bien.&rdquo;
+        </p>
+        <span className="salmo-cita">Salmos 139:13-14 RVR1960</span>
+      </div>
     </section>
   );
 }
