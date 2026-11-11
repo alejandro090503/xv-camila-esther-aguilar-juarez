@@ -23,6 +23,7 @@ import MenuFlotante from "./MenuFlotante";
 import FadeSections from "./FadeSections";
 import AutoScroll from "./AutoScroll";
 import InkBg from "./InkBg";
+import FondoBg from "./FondoBg";
 
 export default function InvitacionClient() {
   const [contentVisible, setContentVisible] = useState(false);
@@ -59,7 +60,7 @@ export default function InvitacionClient() {
           <Swirl />
         </ScrollReveal>
 
-        <ScrollReveal bg="sec-alt" ink={<InkBg img="top" dir={1} />}>
+        <ScrollReveal bg="sec-alt" ink={<FondoBg name="familia" dir={1} />}>
           <Familia />
         </ScrollReveal>
 
@@ -78,12 +79,12 @@ export default function InvitacionClient() {
         </ScrollReveal>
 
         <ScrollReveal>
-          <NocheBand id="fecha">
+          <NocheBand id="fecha" bg="/fondos/fecha.webp">
             <CountdownTimer />
           </NocheBand>
         </ScrollReveal>
 
-        <ScrollReveal bg="sec-paper">
+        <ScrollReveal bg="sec-paper" ink={<FondoBg name="galeria" dir={2} delay={-7} />}>
           <Galeria />
         </ScrollReveal>
 
@@ -95,7 +96,7 @@ export default function InvitacionClient() {
           <Swirl />
         </ScrollReveal>
 
-        <ScrollReveal bg="sec-paper" ink={<InkBg img="corner" flip dir={3} delay={-11} />}>
+        <ScrollReveal bg="sec-paper" ink={<FondoBg name="itinerario" dir={3} delay={-11} />}>
           <Itinerario />
         </ScrollReveal>
 
@@ -103,7 +104,7 @@ export default function InvitacionClient() {
           <Ornament />
         </ScrollReveal>
 
-        <ScrollReveal bg="sec-alt" ink={<InkBg img="top" flip dir={4} delay={-3} />}>
+        <ScrollReveal bg="sec-alt" ink={<FondoBg name="vestimenta" dir={4} delay={-3} />}>
           <DressCode />
         </ScrollReveal>
 
@@ -111,7 +112,7 @@ export default function InvitacionClient() {
           <Swirl />
         </ScrollReveal>
 
-        <ScrollReveal bg="sec-paper" ink={<InkBg img="oval" flip dir={1} delay={-15} />}>
+        <ScrollReveal bg="sec-paper" ink={<FondoBg name="regalos" dir={1} delay={-15} />}>
           <MesaRegalos />
         </ScrollReveal>
 
@@ -119,7 +120,7 @@ export default function InvitacionClient() {
           <Ornament />
         </ScrollReveal>
 
-        <ScrollReveal bg="sec-alt" ink={<InkBg img="corner" dir={2} delay={-8} />}>
+        <ScrollReveal bg="sec-alt" ink={<FondoBg name="album" dir={2} delay={-8} />}>
           <AlbumQR />
         </ScrollReveal>
 
@@ -135,7 +136,7 @@ export default function InvitacionClient() {
           <Swirl />
         </ScrollReveal>
 
-        <ScrollReveal bg="sec-paper" ink={<InkBg img="top" dir={3} delay={-18} />}>
+        <ScrollReveal bg="sec-paper" ink={<FondoBg name="rsvp" dir={3} delay={-18} />}>
           <RSVPSection />
         </ScrollReveal>
 

@@ -6,10 +6,12 @@ export default function NocheBand({
   children,
   id,
   className = "",
+  bg,
 }: {
   children: ReactNode;
   id?: string;
   className?: string;
+  bg?: string;
 }) {
   const ref = useRef<HTMLElement>(null);
   useEffect(() => {
@@ -34,7 +36,7 @@ export default function NocheBand({
   }, []);
   return (
     <section id={id} ref={ref} className={`noche ${className}`} data-top="#0f1d4a" data-bot="#0f1d4a" style={{ textAlign: "center" }}>
-      <div className="noche-bg" aria-hidden="true" />
+      <div className="noche-bg" aria-hidden="true" style={bg ? ({ ["--noche-img" as string]: `url(${bg})` } as React.CSSProperties) : undefined} />
       {children}
     </section>
   );

@@ -132,3 +132,16 @@
 
 #regalos .fx-env-title{display:inline-block;animation-delay:-4.2s!important}
 #footer.noche-foot{padding-bottom:112px}
+
+/* ---------- Fondos pintados por sección ---------- */
+.fondo-bg{position:absolute;inset:0;z-index:-2;pointer-events:none;overflow:hidden;
+  -webkit-mask-image:linear-gradient(transparent 0,#000 110px,#000 calc(100% - 110px),transparent);
+  mask-image:linear-gradient(transparent 0,#000 110px,#000 calc(100% - 110px),transparent)}
+.fondo-bg i{position:absolute;inset:-6%;background:center/cover no-repeat;animation:26s ease-in-out infinite alternate}
+.fondo-d1{animation-name:fdA}.fondo-d2{animation-name:fdB}.fondo-d3{animation-name:fdC}.fondo-d4{animation-name:fdD}
+@keyframes fdA{0%{transform:translate3d(-2%,-1.5%,0) scale(1.02)}100%{transform:translate3d(2%,1.5%,0) scale(1.1)}}
+@keyframes fdB{0%{transform:translate3d(2%,-1%,0) scale(1.1)}100%{transform:translate3d(-2%,1.5%,0) scale(1.02)}}
+@keyframes fdC{0%{transform:translate3d(0,2%,0) scale(1.04)}100%{transform:translate3d(-1.5%,-2%,0) scale(1.1)}}
+@keyframes fdD{0%{transform:translate3d(-1.5%,1.5%,0) scale(1.08)}100%{transform:translate3d(2%,-1.5%,0) scale(1.02)}}
+#footer .foot-bg{background-position:center bottom}
+@media(prefers-reduced-motion:reduce){.fondo-bg i{animation:none!important}}
