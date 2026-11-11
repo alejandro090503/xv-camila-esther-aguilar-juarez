@@ -6,6 +6,8 @@ import "./fx-core.css";
 import "./fx-galeria.css";
 import "./fx-rsvp-vinilo.css";
 import "./fx-dress-sobres.css";
+import "./fx-hero.css";
+import "./fx-regalo.css";
 
 const italiana = Italiana({
   weight: "400",
@@ -49,7 +51,7 @@ export const metadata: Metadata = {
     description: DESC,
     url: URL,
     type: "website",
-    images: [{ url: `${URL}/og-image.jpg`, width: 1200, height: 630 }],
+    images: [{ url: `${URL}/og-image.jpg?v=2`, width: 1200, height: 630, type: "image/jpeg" }],
   },
 };
 

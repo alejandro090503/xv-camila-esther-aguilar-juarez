@@ -3,9 +3,9 @@ import { useEffect, useState } from "react";
 
 const SECCIONES = [
   { id: "inicio", label: "Inicio" },
-  { id: "galeria", label: "Mi historia" },
   { id: "familia", label: "Mis padres" },
   { id: "fecha", label: "Fecha" },
+  { id: "galeria", label: "Mi historia" },
   { id: "ubicacion", label: "Ubicación" },
   { id: "itinerario", label: "Itinerario" },
   { id: "vestimenta", label: "Vestimenta" },

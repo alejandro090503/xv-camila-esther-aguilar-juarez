@@ -3,8 +3,8 @@ import { useRef, useState } from "react";
 
 const SUPABASE =
   "https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/xv-camila-esther-aguilar-juarez";
-const SOBRE_IMG = `${SUPABASE}/sobre.jpg`;
-const SOBRE_VIDEO = `${SUPABASE}/sobre-apertura.mp4`;
+const SOBRE_IMG = `${SUPABASE}/sobre-v2.jpg`;
+const SOBRE_VIDEO = `${SUPABASE}/sobre-apertura-v2.mp4`;
 
 interface Props {
   onStart: () => void;

@@ -59,14 +59,6 @@ export default function InvitacionClient() {
           <Swirl />
         </ScrollReveal>
 
-        <ScrollReveal bg="sec-paper">
-          <Galeria />
-        </ScrollReveal>
-
-        <ScrollReveal>
-          <Ornament />
-        </ScrollReveal>
-
         <ScrollReveal bg="sec-alt" ink={<InkBg img="top" dir={1} />}>
           <Familia />
         </ScrollReveal>
@@ -89,6 +81,10 @@ export default function InvitacionClient() {
           <NocheBand id="fecha">
             <CountdownTimer />
           </NocheBand>
+        </ScrollReveal>
+
+        <ScrollReveal bg="sec-paper">
+          <Galeria />
         </ScrollReveal>
 
         <ScrollReveal bg="sec-alt" ink={<InkBg img="oval" dir={2} delay={-6} />}>
