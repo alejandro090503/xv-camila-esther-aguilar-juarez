@@ -18,9 +18,10 @@ const POS: Record<number, string> = {
   20: "50% 40%", // 2:3 cuerpo completo
 };
 // Orden: recién nacida y bebé (21–27, enviadas el 23 nov) → de niña a hoy (1–20) → reciente (28)
-const ORDEN = [21, 22, 23, 24, 25, 26, 27, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 28];
+const ORDEN = [21, 22, 29, 24, 25, 26, 27, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 28];
 POS[22] = "50% 32%"; // bebé sonriendo, cara arriba
 POS[24] = "50% 35%"; // Blancanieves
+POS[29] = "50% 25%"; // bebé sentada con peluche (reemplaza a la 23, que salía cortada)
 POS[28] = "50% 30%"; // con su hermana, caras arriba
 const FOTOS = ORDEN.map((n) => ({
   src: `${BASE}/foto${String(n).padStart(2, "0")}.jpg`,
