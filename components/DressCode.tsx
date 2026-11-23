@@ -8,7 +8,7 @@ type Color = { hex: string; name: string };
 
 const SUGERIDOS: Color[] = [
   { hex: "#999999", name: "Gris" },
-  { hex: "#11053b", name: "Azul noche" },
+  { hex: "#000000", name: "Negro" },
   { hex: "#ffffff", name: "Blanco" },
 ];
 

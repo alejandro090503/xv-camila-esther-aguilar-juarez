@@ -5,7 +5,7 @@ import { createPortal } from "react-dom";
 const BASE =
   "https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/xv-camila-esther-aguilar-juarez";
 
-// 20 fotos del cliente, de bebé a hoy. `pos` = object-position revisado foto por
+// 28 fotos del cliente, de bebé a hoy. `pos` = object-position revisado foto por
 // foto contra el recorte real de la tarjeta 3:4 (object-fit: cover).
 const POS: Record<number, string> = {
   1: "52% 50%", // horizontal: bebé en el inflable
@@ -17,10 +17,15 @@ const POS: Record<number, string> = {
   17: "45% 50%", // horizontal: en la alberca
   20: "50% 40%", // 2:3 cuerpo completo
 };
-const FOTOS = Array.from({ length: 20 }, (_, i) => ({
-  src: `${BASE}/foto${String(i + 1).padStart(2, "0")}.jpg`,
-  alt: `Camila Esther — recuerdo ${i + 1}`,
-  pos: POS[i + 1] ?? "50% 50%",
+// Orden: recién nacida y bebé (21–27, enviadas el 23 nov) → de niña a hoy (1–20) → reciente (28)
+const ORDEN = [21, 22, 23, 24, 25, 26, 27, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 28];
+POS[22] = "50% 32%"; // bebé sonriendo, cara arriba
+POS[24] = "50% 35%"; // Blancanieves
+POS[28] = "50% 30%"; // con su hermana, caras arriba
+const FOTOS = ORDEN.map((n) => ({
+  src: `${BASE}/foto${String(n).padStart(2, "0")}.jpg`,
+  alt: `Camila Esther — recuerdo ${n}`,
+  pos: POS[n] ?? "50% 50%",
 }));
 
 const N = FOTOS.length;
