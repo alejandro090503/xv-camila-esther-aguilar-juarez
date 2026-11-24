@@ -8,6 +8,29 @@ const DEADLINE = new Date(2027, 0, 2, 23, 59, 59, 999);
 
 type Estado = "confirmado" | "declino";
 
+/* ?i=<token> del panel: base64url de "nombre|pases|menores" */
+function decodeInvite(tok: string): { nombre: string; pases: number; menores: number } | null {
+  if (!tok) return null;
+  try {
+    let b = tok.replace(/-/g, "+").replace(/_/g, "/");
+    while (b.length % 4) b += "=";
+    const bytes = Uint8Array.from(atob(b), (c) => c.charCodeAt(0));
+    const parts = new TextDecoder().decode(bytes).split("|");
+    if (parts.length < 3) return null;
+    const menores = parseInt(parts.pop() || "0", 10);
+    const pases = parseInt(parts.pop() || "1", 10);
+    const nombre = parts.join("|").trim();
+    if (!nombre) return null;
+    return {
+      nombre,
+      pases: isNaN(pases) || pases < 1 || pases > 20 ? 1 : pases,
+      menores: isNaN(menores) || menores < 0 || menores > 20 ? 0 : menores,
+    };
+  } catch {
+    return null;
+  }
+}
+
 /** Detiene el auto-scroll de la invitación cuando el invitado interactúa. */
 function pararAutoscroll() {
   window.dispatchEvent(new Event("autoscroll:stop"));
@@ -69,6 +92,7 @@ export default function RSVPSection() {
   const [menores, setMenores] = useState(0);
   const [cargado, setCargado] = useState(false);
   const [desconocido, setDesconocido] = useState(false);
+  const [cerrado, setCerrado] = useState("");
   const [choice, setChoice] = useState<"yes" | "no" | null>(null);
   const [nombres, setNombres] = useState<string[]>([""]);
   const [nombresMenores, setNombresMenores] = useState<string[]>([]);
@@ -82,11 +106,17 @@ export default function RSVPSection() {
   useEffect(() => {
     setFrozen(Date.now() > DEADLINE.getTime());
     const params = new URLSearchParams(window.location.search);
-    const para = (params.get("para") || "").trim();
+    const tok = decodeInvite((params.get("i") || "").trim());
+    let para = (params.get("para") || "").trim();
     const rawP = parseInt(params.get("pases") || "1", 10);
-    const urlP = isNaN(rawP) || rawP < 1 || rawP > 20 ? 1 : rawP;
+    let urlP = isNaN(rawP) || rawP < 1 || rawP > 20 ? 1 : rawP;
     const rawM = parseInt(params.get("menores") || "0", 10);
-    const urlM = isNaN(rawM) || rawM < 0 || rawM > 20 ? 0 : rawM;
+    let urlM = isNaN(rawM) || rawM < 0 || rawM > 20 ? 0 : rawM;
+    if (tok) {
+      para = tok.nombre;
+      urlP = tok.pases;
+      urlM = tok.menores;
+    }
     setNombrePara(para);
     setPasesAsignados(urlP);
     setPasesUsar(urlP);
@@ -106,6 +136,8 @@ export default function RSVPSection() {
           setCargado(true);
           return;
         }
+        if (typeof d.nombre === "string" && d.nombre.trim()) setNombrePara(d.nombre.trim());
+        if (d.bloqueado === true) setCerrado("Las respuestas de esta invitación ya están cerradas.");
         let p = urlP;
         if (typeof d.pases === "number" && d.pases > 0 && d.pases <= 20) {
           p = d.pases;
@@ -144,7 +176,7 @@ export default function RSVPSection() {
     setNombresMenores((prev) => Array(menores).fill("").map((_, i) => prev[i] || ""));
   }, [menores]);
 
-  const bloqueado = !cargado || frozen || desconocido;
+  const bloqueado = !cargado || frozen || desconocido || !!cerrado;
 
   function select(c: "yes" | "no") {
     pararAutoscroll();
@@ -193,7 +225,17 @@ export default function RSVPSection() {
           nombres_confirmados: lista,
         }),
       });
-      if (!r.ok) throw new Error(String(r.status));
+      let d: { ok?: boolean; error?: string } | null = null;
+      try { d = await r.json(); } catch { d = null; }
+      if (r.status === 423 || d?.error === "respuestas_cerradas") {
+        setCerrado("Las respuestas de esta invitación ya están cerradas.");
+        return;
+      }
+      if (r.status === 410 || d?.error === "invitacion_borrada") {
+        setCerrado("Esta invitación ya no está activa. Pide a la familia un enlace nuevo.");
+        return;
+      }
+      if (!r.ok || !d?.ok) throw new Error(String(r.status));
       setYaRespondio(true);
       setGracias({ estado, nombres: lista });
       if (estado === "confirmado") lanzarConfeti();
@@ -262,6 +304,8 @@ export default function RSVPSection() {
             : "Para confirmar, abre el enlace personal que te enviaron."}
         </p>
       )}
+
+      {cerrado && <p className="rv-aviso">{cerrado}</p>}
 
       {gracias ? (
         <div className="rv-gracias">
